@@ -19,6 +19,11 @@ class App extends Component {
   activeMarker: null
 }
 
+handleMarkerClick = (marker) => {
+      marker.isOpen = true;
+      this.setState({markers: Object.assign(this.state.markers.marker)})
+   }
+
   componentDidMount = () => {
     LocationsAPI.getLocations()
       .then(json => {
@@ -51,7 +56,8 @@ class App extends Component {
       <div>
         <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
       </div>
-        <Map {...this.state}/>
+        <Map {...this.state}
+        handleMarkerClick={this.handleMarkerClick}/>
       </div>
     );
   }
