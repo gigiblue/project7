@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Map from './component/Map';
+// import SquareAPI from './API/'
+import * as LocationsAPI from './API/';
 
 class App extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     venues: [],
+  //     center: [],
+  //     markers: [],
+  //     zoom: 12
+  //   };
+  // }
+  componentDidMount = () => {
+    LocationsAPI.getLocations()
+    .then(results => {
+      this.setState({
+        locations: results
+      });
+      console.log(results);
+      //results => this.setState({ locations: results })
+      //const {venues} = results.venue;
+      // // const {center} = results.geocode.feature.geometry;
+      // const markers = venues.map(venue=>{
+      //   return {
+      //     lat: venue.location.lat,
+      //     lng: venue.location.lng,
+      //     isOpen: false,
+      //     isVisible: true
+      //   };
+      // });
+      // this.setState({markers});
+    });
+   }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
+      </div>
+        <Map/>
       </div>
     );
   }
