@@ -9,12 +9,10 @@ import * as LocationsAPI from './API/';
 class App extends Component {
 
   state = {
-  // lat: 29.7844913,
-  // lon: -95.7800231,
   zoom: 13,
   all: [],
   markers: [],
-  filtered: null,
+  filtered: [],
   open: false,
   selectedId: null,
   activeMarker: null
@@ -41,8 +39,9 @@ handleMarkerClick = (marker) => {
         // const filtered = this.filterVenues(all, "");
         console.log(all);
         this.setState({
-        all,
-        filtered: this.filterVenues(all, "")
+        all: all,
+        filtered: all
+        // filtered: this.filterVenues(all, "")
         });
         const markers = all.map(venue => {
           return {
@@ -66,9 +65,9 @@ handleMarkerClick = (marker) => {
   render() {
     return (
       <div className="App">
-        <div>
-          <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
-        </div>
+        // <div>
+        //   <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
+        // </div>
           <Menu filtered={this.state.filtered} />
           <Map {...this.state}
           handleMarkerClick={this.handleMarkerClick}/>

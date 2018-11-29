@@ -22,7 +22,7 @@ class Menu extends Component {
               flexDirection: "column",
               justifyContent: "center",
             }}>
-            {this.props.filtered.map(venue => {
+            {this.props.filtered && this.props.filtered.map(venue => {
               return <li key={venue.name}>{venue.name}</li>;
             })}
           </ul>
