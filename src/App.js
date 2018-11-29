@@ -6,36 +6,44 @@ import Map from './component/Map';
 import * as LocationsAPI from './API/';
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     venues: [],
-  //     center: [],
-  //     markers: [],
-  //     zoom: 12
-  //   };
-  // }
+
+  state = {
+  // lat: 29.7844913,
+  // lon: -95.7800231,
+  zoom: 13,
+  all: [],
+  markers: [],
+  filtered: null,
+  open: false,
+  selectedId: null,
+  activeMarker: null
+}
+
   componentDidMount = () => {
     LocationsAPI.getLocations()
-    .then(results => {
-      this.setState({
-        locations: results
-      });
-      console.log(results);
-      //results => this.setState({ locations: results })
-      //const {venues} = results.venue;
-      // // const {center} = results.geocode.feature.geometry;
-      // const markers = venues.map(venue=>{
-      //   return {
-      //     lat: venue.location.lat,
-      //     lng: venue.location.lng,
-      //     isOpen: false,
-      //     isVisible: true
-      //   };
-      // });
-      // this.setState({markers});
-    });
+      .then(json => {
+        const all = json.response.venues;
+        console.log(all);
+        this.setState({
+        all,
+        filtered: this.filterVenues(all, "")
+        });
+        const markers = all.map(venue => {
+          return {
+          lat: parseFloat(venue.location.lat),
+          lng: parseFloat(venue.location.lng),
+          isOpen: false,
+          isVisible:true,
+          };
+        });
+        console.log(markers);
+        this.setState({markers});
+      })
    }
+   filterVenues = (venues, query) => {
+       // Filter locations to match query string
+       return venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+     }
 
   render() {
     return (
@@ -43,7 +51,7 @@ class App extends Component {
       <div>
         <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
       </div>
-        <Map/>
+        <Map {...this.state}/>
       </div>
     );
   }
