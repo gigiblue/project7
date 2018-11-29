@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Map from './component/Map';
+import Menu from './component/Menu';
 // import SquareAPI from './API/'
 import * as LocationsAPI from './API/';
 
@@ -37,6 +38,7 @@ handleMarkerClick = (marker) => {
     LocationsAPI.getLocations()
       .then(json => {
         const all = json.response.venues;
+        // const filtered = this.filterVenues(all, "");
         console.log(all);
         this.setState({
         all,
@@ -64,11 +66,12 @@ handleMarkerClick = (marker) => {
   render() {
     return (
       <div className="App">
-      <div>
-        <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
-      </div>
-        <Map {...this.state}
-        handleMarkerClick={this.handleMarkerClick}/>
+        <div>
+          <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
+        </div>
+          <Menu filtered={this.state.filtered} />
+          <Map {...this.state}
+          handleMarkerClick={this.handleMarkerClick}/>
       </div>
     );
   }
