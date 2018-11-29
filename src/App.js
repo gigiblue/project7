@@ -31,7 +31,7 @@ class App extends Component {
     this.setState({ markers: Object.assign(this.state.markers, marker) });
   };
 
-  handleMenuClick = venue => {
+  handleMenuClick = venue => {//note very sure about this
     console.log(venue);
   }
 
@@ -77,7 +77,7 @@ class App extends Component {
           <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
         </div>
         <Menu
-          filtered={this.state.filtered} 
+          filtered={this.state.filtered}
           {...this.state}
           handleMenuClick={this.handleMenuClick}
         />

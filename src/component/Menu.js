@@ -23,38 +23,34 @@ class Menu extends Component {
         onChange={e => this.updateQuery(e.target.value)}
         value={this.state.query}
         />
-        <div>
-          <ul
-                style={{
+      <div>
+          <ul    style={{
                   listStyleType: "none",
                   margin: "0 auto",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                }}>
-            // {this.props.filtered.map(venue => {
-            //   return <li key={venue.name}>{venue.name}</li>;
-            //   onClick={() => this.props.handleMenuClick(this.props)}
-            // })}
-            {this.props.venues && this
-                  .props
-                  .venues
-                  .map((venue, index) => {
-                      return (
-                          <li key={venue.name}>
-                                <button
-                                  key={index}
-                                  onClick={() => this
-                                  .props
-                                  .handleMenuClick(this.props)}>
-                                  <div>
+                  }}>
+
+                {this.props.venues && this
+                      .props
+                      .venues
+                      .map((venue, index) => {
+                          return (
+                              <li key={venue.name}>
+                                    <button
+                                      key={index}
+                                      onClick={() => this
+                                      .props
+                                      .handleMenuClick(this.props)}>
                                       <div>
-                                          {venue.name}
+                                          <div>
+                                              {venue.name}
+                                          </div>
                                       </div>
-                                  </div>
-                                </button>
-                          </li>
-                        )
+                                    </button>
+                              </li>
+                            )
                     })}
           </ul>
         </div>
@@ -64,3 +60,7 @@ class Menu extends Component {
 }
 
 export default Menu;
+// {this.props.filtered.map(venue => {
+//   return <li key={venue.name}>{venue.name}</li>;
+//   onClick={() => this.props.handleMenuClick(this.props)}
+// })}
