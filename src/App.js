@@ -31,6 +31,10 @@ class App extends Component {
     this.setState({ markers: Object.assign(this.state.markers, marker) });
   };
 
+  handleMenuClick = venue => {
+    console.log(venue);
+  }
+
   componentDidMount = () => {
     LocationsAPI.getLocations().then(json => {
       const all = json.response.venues;
@@ -72,7 +76,11 @@ class App extends Component {
         <div>
           <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
         </div>
-        <Menu filtered={this.state.filtered} />
+        <Menu
+          filtered={this.state.filtered} 
+          {...this.state}
+          handleMenuClick={this.handleMenuClick}
+        />
         <Map
           {...this.state}
           handleMarkerClick={this.handleMarkerClick}
