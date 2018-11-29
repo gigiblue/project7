@@ -9,16 +9,14 @@ const MyMapComponent = withScriptjs(
     zoom={props.zoom}
     // center={props.center}
    >
-    {props.markers && props.markers
-                      .filter(marker => marker.isVisible)
-                      .map((marker, idx)=>(
-                        <Marker
-                          key={idx}
-                          position={{lat: marker.lat, lng: marker.lng}}
+    {props.markers &&
+      props.markers.filter(marker => marker.isVisible).map((marker, idx)=>(
+                        <Marker key={idx} position={{lat: marker.lat, lng: marker.lng}}
                           onClick={() => props.handleMarkerClick(marker)}>
                             {marker.isOpen && (
                               <InfoWindow>
-                                <p>Gigi</p>
+                                <p>{marker.name}</p>
+                                // <p>{marker.address}</p>
                               </InfoWindow>
                             )}
                           </Marker>

@@ -19,9 +19,18 @@ class App extends Component {
   activeMarker: null
 }
 
+closeOtherMarkers = () => {
+       const markers = this.state.markers.map(marker => {
+       marker.isOpen = false;
+       return marker;
+     });
+   this.setState({markers: Object.assign(this.state.markers, markers)});
+ }
+
 handleMarkerClick = (marker) => {
+      this.closeOtherMarkers();
       marker.isOpen = true;
-      this.setState({markers: Object.assign(this.state.markers.marker)})
+      this.setState({markers: Object.assign(this.state.markers, marker)})
    }
 
   componentDidMount = () => {
@@ -39,6 +48,8 @@ handleMarkerClick = (marker) => {
           lng: parseFloat(venue.location.lng),
           isOpen: false,
           isVisible:true,
+          name: venue.name,
+          address: venue.location.address
           };
         });
         console.log(markers);
