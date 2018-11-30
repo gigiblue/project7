@@ -12,13 +12,15 @@ class Menu extends Component {
     width: "25%",
     minWidth: "80px",
     height: "100%",
-    backgroundColor: "gray",
+    backgroundColor: "white",
   };
 
   updateQuery = (newQuery) => {
           // Save the new query string in state and pass the string up the call tree
-          this.setState({query: newQuery});
-          this.props.filterVenues(newQuery);
+  this.setState({query: newQuery});
+  this
+      .props
+      .filterVenues(newQuery);
       }
 
   render = () => {
@@ -38,9 +40,9 @@ class Menu extends Component {
                   justifyContent: "center",
                   }}>
 
-                {this.props.venues && this
+                {this.props.filtered && this
                       .props
-                      .venues
+                      .filtered
                       .map((venue, index) => {
                           return (
                               <li key={venue.name}>
