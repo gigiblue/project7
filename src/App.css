@@ -4,37 +4,36 @@
   width: 100vw;
   display: flex;
   flex-flow: row nowrap;
+  .menuBar {
+    width: "25%";
+    backgroundColor: "white"
+    /* position: "absolute";
+    minWidth: "80px";
+    height: "100%"; */
+      #search {
+        width: 100%;
+        height: 2rem;
+        font-size: 1rem;
+      }
+      .menuList {
+      /* listStyleType: none;
+      margin: 0 auto;
+      display: flex;
+      flexDirection: column;
+      justifyContent: center; */
+      padding: 1rem
+          .itemList {
+          list-style: none;
+          margin-top: 1rem;
+          padding: 0.5rem;
+          font-size: 1rem
+          }
+    }
+}
 }
 
-.menuBar {
-  position: "absolute";
-  width: "25%";
-  minWidth: "80px";
-  height: "100%";
-  backgroundColor: "white"
-}
 
-input#search {
-  width: 100%;
-  height: 2rem;
-  font-size: 1rem;
-}
 
-ul.menuList {
-  /* listStyleType: none;
-  margin: 0 auto;
-  display: flex;
-  flexDirection: column;
-  justifyContent: center; */
-  padding: 1rem
-}
-
-li.itemList {
-  list-style: none;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  font-size: 1rem
-}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
