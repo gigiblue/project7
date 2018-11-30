@@ -115,9 +115,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <h1>Roma Ostiense, Italy: Sushi Restaurants</h1>
-        </div>
+
         <Menu
           filterVenues={this.filterVenues}
           filtered={this.state.filtered}

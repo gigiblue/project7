@@ -15,7 +15,12 @@ class Menu extends Component {
   render = () => {
     return (
       <div className="menuBar">
-        <h1>Filter Restaurants</h1>
+
+      <div>
+        <h1>Roma Ostiense, Italy: Sushi Restaurants</h1>
+      </div>
+
+        <h3>Filter Restaurants</h3>
         <input
           type="text" id={"search"}
           onChange={e => this.updateQuery(e.target.value)}
