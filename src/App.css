@@ -4,34 +4,31 @@
   width: 100vw;
   display: flex;
   flex-flow: row nowrap;
-
-  .menuBar {
-    width: "25%";
-    background-color: : "#FF7F50"
-      #search {
-        width: 100%;
-        height: 2rem;
-        font-size: 1rem;
-      }
-      .menuList {
-      list-style: none;
-      margin: 0 auto;
-      display: flex;
-      flexDirection: column;
-      justifyContent: center; */
-      padding: 1rem
-          .itemList {
-          list-style: none;
-          margin-top: 1rem;
-          padding: 0.5rem;
-          font-size: 1rem
-          }
-    }
 }
+.menuBar {
+  width: 25%;
+  background-color: #D69E24;
 }
+#search {
+  width: 80%;
+  height: 2rem;
+  font-size: 1rem;
+  background-color: #97EDC4;
+}
+.menuList {
+  list-style: none;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-
-
+  padding: 1rem;
+}
+.itemList {
+  list-style: none;
+  padding: 0.15rem;
+  font-size: 1rem;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -61,3 +58,11 @@
     transform: rotate(360deg);
   }
 }
+
+/* ====================== Media Queries for smaller devices ====================== */
+@media only screen and (min-width: 300px) and (max-width: 409px){
+  .App {
+		display: flex;
+		flex-direction: column-reverse;
+    }
+  }
