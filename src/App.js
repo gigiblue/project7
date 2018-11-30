@@ -38,8 +38,10 @@ class App extends Component {
   handleMenuClick = venue => {
     console.log(venue);
     const markers = [...this.state.markers];
-    markers.forEach(marker => (marker.isOpen = false));
-    const newMarkers = markers.map(marker => {
+    const visMark = [...this.state.visibleMarkers];
+    console.log(visMark);
+    visMark.forEach(marker => (marker.isOpen = false));
+    const newMarkers = visMark.map(marker => {
       if (venue.name === marker.name) {
         marker.isOpen = true;
         return marker;
@@ -48,22 +50,6 @@ class App extends Component {
     });
     this.setState({ visibleMarkers: newMarkers });
   };
-
-  // handleMenuClick = venue => {
-  //   console.log(venue);
-  //   const markers = [...this.state.markers];
-  //   const visMark = [...this.state.visibleMarkers];
-  //   console.log(visMark);
-  //   visMark.forEach(marker => (marker.isOpen = false));
-  //   const newMarkers = visMark.map(marker => {
-  //     if (venue.name === marker.name) {
-  //       marker.isOpen = true;
-  //       return marker;
-  //     }
-  //     return marker;
-  //   });
-  //   this.setState({ visibleMarkers: newMarkers });
-  // };
 
   componentDidMount = () => {
 
@@ -128,13 +114,7 @@ class App extends Component {
 
   render() {
     return (
-      <div
-        className="App"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 3fr",
-          gridTemplateRows: "1fr"
-        }}>
+      <div className="App">
         <div>
           <h1>Roma Ostiense, Italy: Ramen Restaurants</h1>
         </div>

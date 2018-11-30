@@ -6,14 +6,6 @@ class Menu extends Component {
     query: ""
   };
 
-  MenuStyle = {
-    position: "absolute",
-    width: "25%",
-    minWidth: "80px",
-    height: "100%",
-    backgroundColor: "white"
-  };
-
   updateQuery = newQuery => {
     // Save the new query string in state and pass the string up the call tree
     this.setState({ query: newQuery });
@@ -22,26 +14,19 @@ class Menu extends Component {
 
   render = () => {
     return (
-      <div style={this.MenuStyle}>
+      <div className="menuBar">
         <h1>Filter Restaurants</h1>
         <input
-          type="text"
+          type="text" id={"search"}
           onChange={e => this.updateQuery(e.target.value)}
           value={this.state.query}
         />
         <div>
-          <ul
-            style={{
-              listStyleType: "none",
-              margin: "0 auto",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center"
-            }}>
+          <ul className="menuList">
             {this.props.filtered &&
               this.props.filtered.map((venue, index) => {
                 return (
-                  <li key={venue.name}>
+                  <li className="itemList" key={venue.name}>
                     <button
                       key={index}
                       onClick={() => this.props.handleMenuClick(venue)}>
