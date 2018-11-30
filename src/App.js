@@ -34,7 +34,7 @@ class App extends Component {
     marker.isOpen = true;
     this.setState({ markers: Object.assign(this.state.markers, marker) });
   };
-  //when a venue's item on the Menu list is clicked
+
   handleMenuClick = venue => {
     console.log(venue);
     const markers = [...this.state.markers];
@@ -49,15 +49,36 @@ class App extends Component {
     this.setState({ visibleMarkers: newMarkers });
   };
 
+  // handleMenuClick = venue => {
+  //   console.log(venue);
+  //   const markers = [...this.state.markers];
+  //   const visMark = [...this.state.visibleMarkers];
+  //   console.log(visMark);
+  //   visMark.forEach(marker => (marker.isOpen = false));
+  //   const newMarkers = visMark.map(marker => {
+  //     if (venue.name === marker.name) {
+  //       marker.isOpen = true;
+  //       return marker;
+  //     }
+  //     return marker;
+  //   });
+  //   this.setState({ visibleMarkers: newMarkers });
+  // };
+
   componentDidMount = () => {
+
+    window.gm_authFailure = () => {
+      alert("Your GoogleMaps data could not be retrieved due to an error");
+    }
+
     LocationsAPI.getLocations().then(json => {
       const all = json.response.venues;
       // const filtered = this.filterVenues(all, "");
       this.setState({
         all: all,
-        filtered: all // const filtered = this.filterVenues(all, ""); should be like this, but I temporarily changed it to all because I'm having issues with my filtervenues function and I want to show a list for now
+        filtered: all
       });
-      console.log(all);
+      // console.log(all);
       // console.log(filtered);
       const markers = all.map(venue => {
         return {
@@ -69,7 +90,7 @@ class App extends Component {
           address: venue.location.address
         };
       });
-      console.log(markers);
+      // console.log(markers);
       this.setState({ markers: markers, visibleMarkers: markers });
     });
   };
@@ -79,6 +100,7 @@ class App extends Component {
     const filtered = venues.filter(venue =>
       venue.name.toLowerCase().includes(query.toLowerCase())
     );
+    console.log(filtered);
     this.setState(
       {
         query: query,
@@ -100,6 +122,7 @@ class App extends Component {
         }
       });
     });
+    console.log(markerArr);
     this.setState({ visibleMarkers: markerArr });
   };
 
