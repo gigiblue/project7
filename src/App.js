@@ -11,13 +11,15 @@ class App extends Component {
     zoom: 14,
     all: [],
     markers: [],
+    visibleMarkers: [],
     filtered: [],
     open: false,
+    query: "",
     selectedId: null,
     selectedIndex: null,
     activeMarker: null
   };
-//This is to close other markers's info window when a single one is clicked
+  //This is to close other markers's info window when a single one is clicked
   closeOtherMarkers = () => {
     const markers = this.state.markers.map(marker => {
       marker.isOpen = false;
@@ -25,16 +27,27 @@ class App extends Component {
     });
     this.setState({ markers: Object.assign(this.state.markers, markers) });
   };
-//when a venue's marker is clicked
+  //when a venue's marker is clicked
   handleMarkerClick = marker => {
+    console.log(marker);
     this.closeOtherMarkers();
     marker.isOpen = true;
     this.setState({ markers: Object.assign(this.state.markers, marker) });
   };
-//when a venue's item on the Menu list is clicked
-  handleMenuClick = venue => {//note very sure about this
+  //when a venue's item on the Menu list is clicked
+  handleMenuClick = venue => {
     console.log(venue);
-  }
+    const markers = [...this.state.markers];
+    markers.forEach(marker => (marker.isOpen = false));
+    const newMarkers = markers.map(marker => {
+      if (venue.name === marker.name) {
+        marker.isOpen = true;
+        return marker;
+      }
+      return marker;
+    });
+    this.setState({ visibleMarkers: newMarkers });
+  };
 
   componentDidMount = () => {
     LocationsAPI.getLocations().then(json => {
@@ -42,7 +55,7 @@ class App extends Component {
       // const filtered = this.filterVenues(all, "");
       this.setState({
         all: all,
-        filtered: all// const filtered = this.filterVenues(all, ""); should be like this, but I temporarily changed it to all because I'm having issues with my filtervenues function and I want to show a list for now
+        filtered: all // const filtered = this.filterVenues(all, ""); should be like this, but I temporarily changed it to all because I'm having issues with my filtervenues function and I want to show a list for now
       });
       console.log(all);
       // console.log(filtered);
@@ -57,29 +70,38 @@ class App extends Component {
         };
       });
       console.log(markers);
-      this.setState({ markers });
+      this.setState({ markers: markers, visibleMarkers: markers });
     });
   };
 
-updateQuery = (query) => {
-  // Update the query value and filter the list of locations accordingly
-  this.setState({
-    selectedIndex: null,
-    filtered: this.filterVenues(this.state.all, query)
-  });
-}
-  // Filter venues result to match query string
-  // filterVenues = (venues, query) => {
-  //   return venues.filter(venue =>
-  //     venue.name.toLowerCase().includes(query.toLowerCase())
-  //     this.setState({filtered: newFilteredList})
-  //   );
-  // };
+  filterVenues = query => {
+    const venues = [...this.state.all];
+    const filtered = venues.filter(venue =>
+      venue.name.toLowerCase().includes(query.toLowerCase())
+    );
+    this.setState(
+      {
+        query: query,
+        selectedIndex: null,
+        filtered: filtered
+      },
+      () => this.filterMarkers()
+    );
+  };
 
-  filterVenues = (venues, query) => {
-  let filtered = venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
-  this.setState({filtered});
-  }
+  filterMarkers = () => {
+    const markers = [...this.state.markers];
+    const filtered = [...this.state.filtered];
+    const markerArr = [];
+    markers.forEach(marker => {
+      filtered.forEach(location => {
+        if (marker.name === location.name) {
+          markerArr.push(marker);
+        }
+      });
+    });
+    this.setState({ visibleMarkers: markerArr });
+  };
 
   render() {
     return (
@@ -101,6 +123,7 @@ updateQuery = (query) => {
         />
         <Map
           {...this.state}
+          closeOtherMarkers={this.closeOtherMarkers}
           handleMarkerClick={this.handleMarkerClick}
           style={{ width: "100%", height: "100%" }}
         />

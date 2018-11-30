@@ -12,9 +12,16 @@ let request = new Request(url, {
   method: 'GET',
   headers
 });
-//fetching data through FourSquare
 return fetch(request)
   .then(response => response.json())
+  // .then(json => {
+  //   const all = json.response.venues;
+  //   console.log(all);
+  //   // this.setState({
+  //   //   all
+  //   //   filtered: this.filterVenues(all, "")
+  //   // });
+  // })
   .catch(error => {
     alert("Your FourSquare data could not be retrieved due to an error");
   });
