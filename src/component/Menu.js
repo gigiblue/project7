@@ -26,11 +26,11 @@ class Menu extends Component {
           value={this.state.query}
         />
         <div>
-          <ul className="menuList">
+          <ul className="menuList" role="list" aria-label="list">
             {this.props.filtered &&
               this.props.filtered.map((venue, index) => {
                 return (
-                  <li className="itemList" key={venue.name}>
+                  <li className="itemList" tabindex="0" key={venue.name}>
                     <button
                       key={index}
                       onClick={() => this.props.handleMenuClick(venue)}>
