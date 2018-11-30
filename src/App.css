@@ -5,6 +5,10 @@
   display: flex;
   flex-flow: row nowrap;
 }
+.MiMapa {
+  height: 100%;
+  width: 75%;
+}
 .menuBar {
   width: 25%;
   background-color: #D69E24;
@@ -60,9 +64,15 @@
 }
 
 /* ====================== Media Queries for smaller devices ====================== */
-@media only screen and (max-width) 480px {
+@media only screen and (max-width: 400px) {
   .App {
 		display: flex;
 		flex-direction: column;
     }
+  .MiMapa {
+    width: 100%;
   }
+  .menuBar {
+    width: 100%;
+  }
+}

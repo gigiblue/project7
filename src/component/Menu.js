@@ -5,9 +5,8 @@ class Menu extends Component {
     open: false,
     query: ""
   };
-
+//Adapted from Doug Brown's tutorial, function to update the query in filter box
   updateQuery = newQuery => {
-    // Save the new query string in state and pass the string up the call tree
     this.setState({ query: newQuery });
     this.props.filterVenues(newQuery);
   };

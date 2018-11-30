@@ -49,7 +49,7 @@ export default class Map extends Component {
         {...this.props}
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDb1mvyz7Rh-48CCw_WtQK3PFltfKAILzA"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%`, width: `75%` }} />}
+        containerElement={<div className="MiMapa"/>}
         mapElement={<div style={{ height: `100%` }} />}
       />
     );

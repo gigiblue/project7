@@ -80,7 +80,7 @@ class App extends Component {
       this.setState({ markers: markers, visibleMarkers: markers });
     });
   };
-
+//Jason White helped me with this function. He is great!
   filterVenues = query => {
     const venues = [...this.state.all];
     const filtered = venues.filter(venue =>
@@ -96,7 +96,7 @@ class App extends Component {
       () => this.filterMarkers()
     );
   };
-
+//Adapted from Doug Brown's Tutorial
   filterMarkers = () => {
     const markers = [...this.state.markers];
     const filtered = [...this.state.filtered];
@@ -115,7 +115,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <Menu
           filterVenues={this.filterVenues}
           filtered={this.state.filtered}
