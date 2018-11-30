@@ -42,8 +42,10 @@ class App extends Component {
       // const filtered = this.filterVenues(all, "");
       this.setState({
         all: all,
-        filtered: this.filterVenues(all, "")
+        filtered: all// const filtered = this.filterVenues(all, ""); should be like this, but I temporarily changed it to all because I'm having issues with my filtervenues function and I want to show a list for now
       });
+      console.log(all);
+      // console.log(filtered);
       const markers = all.map(venue => {
         return {
           lat: parseFloat(venue.location.lat),
