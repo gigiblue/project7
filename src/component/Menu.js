@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 
 class Menu extends Component {
+
+  state = {
+      open: false,
+      query: ""
+  }
+
     MenuStyle = {
     position: "absolute",
     width: "25%",

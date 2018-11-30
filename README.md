@@ -1,10 +1,22 @@
+Neighborhood Maps App
+
+This project was completed by Gigi Zapata as a requirement for the Udacity FEND certification.
+I started this app with the starter code provided by Udacity.
+his code utilizes the following components and services beyond the standard React library:
+
+* Google Maps
+* FourSquare
+* react-google-maps for primary map display
+
+#App Functionality
+
+A list of Ramen restaurants in the Rome, Italy area has been created. These venues are displayed as markers on the map. Clicking a marker displays an info box containing the name of the restaurant. On the left of the screen, there is a menu listing the venues on the map. Typing into the filter box above such menu will show a list of locations matching such description. Additionally, clicking on a menu item will activate the marker on the map.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
-
-### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

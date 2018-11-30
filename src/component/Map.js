@@ -1,3 +1,4 @@
+/*global google*/
 import React, { Component } from "react";
 import {
   withScriptjs,
@@ -10,6 +11,8 @@ import {
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
+      role="application"
+			aria-label="map"
       defaultZoom={8}
       defaultCenter={{ lat: 41.8724128, lng: 12.4767137 }}
       zoom={props.zoom}
@@ -18,11 +21,12 @@ const MyMapComponent = withScriptjs(
       {props.markers &&
         props.markers
           .filter(marker => marker.isVisible)
-          .map((marker, idx) => (
+          .map((marker, idx, arr) => (
             <Marker
               key={idx}
               position={{ lat: marker.lat, lng: marker.lng }}
-              onClick={() => props.handleMarkerClick(marker)}>
+              onClick={() => props.handleMarkerClick(marker)}>//when a marker is clicked, call the function
+              animation = {arr.length ===1 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP}
               {marker.isOpen && (
                 <InfoWindow>
                   <div>

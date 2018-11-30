@@ -16,7 +16,7 @@ class App extends Component {
     selectedId: null,
     activeMarker: null
   };
-
+//This is to close other markers's info window when a single one is clicked
   closeOtherMarkers = () => {
     const markers = this.state.markers.map(marker => {
       marker.isOpen = false;
@@ -24,13 +24,13 @@ class App extends Component {
     });
     this.setState({ markers: Object.assign(this.state.markers, markers) });
   };
-
+//when a venue's marker is clicked
   handleMarkerClick = marker => {
     this.closeOtherMarkers();
     marker.isOpen = true;
     this.setState({ markers: Object.assign(this.state.markers, marker) });
   };
-
+//when a venue's item on the Menu list is clicked
   handleMenuClick = venue => {//note very sure about this
     console.log(venue);
   }
@@ -41,7 +41,7 @@ class App extends Component {
       // const filtered = this.filterVenues(all, "");
       this.setState({
         all: all,
-        filtered: all
+        filtered: this.filterVenues(all, "")
       });
       const markers = all.map(venue => {
         return {
@@ -57,8 +57,8 @@ class App extends Component {
       this.setState({ markers });
     });
   };
+  // Filter venues result to match query string
   filterVenues = (venues, query) => {
-    // Filter locations to match query string
     return venues.filter(venue =>
       venue.name.toLowerCase().includes(query.toLowerCase())
     );
