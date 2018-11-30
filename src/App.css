@@ -60,9 +60,9 @@
 }
 
 /* ====================== Media Queries for smaller devices ====================== */
-@media only screen and (min-width: 300px) and (max-width: 409px){
+@media only screen and (max-width) 480px {
   .App {
 		display: flex;
-		flex-direction: column-reverse;
+		flex-direction: column;
     }
   }
